@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th,td{
+        border: 1px black solid;
+        }
+    </style>
+</head>
+<body>
+ <h1>Student Page</h1>
+	{% if not status %}
+		<form action='/loginPage/'>  
+		<button type="submit">login</button> 
+		</form ><br/>
+		<form action='/signupPage/'>  
+		<button type="submit">signup</button> 
+		</form>
+	{% endif %}
+	{% if  status %}
+		<form action='/logouts/'>  
+		<button type="submit">logout</button> 
+		</form ><br/>
+		<form action='/changePage/{{user}}'>  
+		<button type="submit">change password</button> 
+		</form>
+		{% endif %}
+		
+		
+{% if stu %}
+ <h1>Show Data</h1>
+ <table>
+     <tr>
+         <th>Rollno</th>
+         <th>Name</th>
+         <th>Class</th>
+         <th>School</th>
+         <th>Mobile</th>
+		 <th>Address</th>
+     </tr>
+ 
+     {% for st in stu %}
+	 <tr>
+     <td>{{st.Rollno}}</td>
+     <td><a href="{% url "detailsUsers" ids=st.Rollno%}">{{st.Name}}</a></td>
+     <td>{{st.Class}}</td>
+     <td>{{st.School}}</td>
+     <td>{{st.Mobile}}</td>
+	 <td>{{st.Address}}</td>
+	 
+	 
+	 {% if user %}
+	 <td>
+		
+		<a href="{% url "update" ids=st.Rollno%}">
+		<button type="submit">update</button> 
+		</a>
+	</td>
+	
+	 <td> 
+		<a href="{% url "delete" ids=st.Rollno%}">
+		<button type="submit" >delete</button> 
+		</a>
+		</td>
+		{% endif %}
+		</tr><br/>
+	 {%endfor%}
+ 
+ <form action="/create/" method="post">  
+ {% csrf_token %}
+ <button type="submit">create</button> 
+ </form>
+ 
+ 
+ <form action="/senturl/" method="post"> 
+ {% csrf_token %}
+  <button type="submit">search for urls in web page</button> 
+ </form> 
+ <br/>
+ 
+ <form action="/stsearch/" method="post"> 
+ {% csrf_token %}
+  <input type="text" placeholder="Enter name" name="stname" required>
+  <button type="submit">submit</button> 
+ </form>
+ 
+</table>
+ <br/>
+{% else %}
+ <h1>No Data</h1>
+<form action="/create/" method="post">  
+ {% csrf_token %}
+ <button type="submit">create</button> 
+ </form>
+ <br/>
+ <form action="/senturl/" method="post"> 
+ {% csrf_token %}
+  <button type="submit">search for urls in web page</button> 
+ </form> 
+ 
+ <form action="/stsearch/" method="post"> 
+ {% csrf_token %}
+  <input type="text" placeholder="Enter name to be search" name="stname" required>
+  <button type="submit">submit</button> 
+ </form>
+ 
+{% endif %}
+</body>
+</html>

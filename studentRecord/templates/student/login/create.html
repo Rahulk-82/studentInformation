@@ -1,0 +1,82 @@
+<!DOCTYPE html>   
+<html>   
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<title> Login Page </title>  
+<style>   
+Body {  
+  font-family: Calibri, Helvetica, sans-serif;  
+  background-color: pink;  
+}  
+button {   
+       background-color: #4CAF50;   
+       width: 100%;  
+        color: orange;   
+        padding: 15px;   
+        margin: 10px 0px;   
+        border: none;   
+        cursor: pointer;   
+         }   
+ form {   
+        border: 3px solid #f1f1f1;   
+    }   
+ input[type=text], input[type=password] {   
+        width: 100%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid green;   
+        box-sizing: border-box;   
+    }  
+ button:hover {   
+        opacity: 0.7;   
+    }   
+  .cancelbtn {   
+        width: auto;   
+        padding: 10px 18px;  
+        margin: 10px 5px;  
+    }   
+        
+     
+ .container {   
+        padding: 25px;   
+        background-color: lightblue;  
+    }   
+</style>   
+</head>    
+<body>    
+    <center> <h1> create </h1> </center>   
+    <form action="/createUser/" method="post">  
+	{% csrf_token %}
+        <div class="container">   
+            <label>name : </label>   
+            <input type="text" placeholder="Enter username" name="name" required>  
+            <label>roll number : </label>   
+            <input type="number" placeholder="Enter roll_no" name="roll_no" required>
+			<label>Class : </label>   
+            <input type="number" placeholder="Enter class" name="class" required><br/>
+			<label>School : </label>   
+            <input type="text" placeholder="Enter school" name="school" required>
+			<label>Mobile : </label>   
+            <input type="number" placeholder="Enter mobile" name="mobile" required><br/>
+			<label>Address: </label>   
+            <input type="text" placeholder="Enter address" name="address" required>
+			<center> <h1> Enter marks </h1> </center>
+			<label>Maths : </label>   
+            <input type="number" placeholder="Enter maths" name="maths" required>
+			<label>Physics : </label>   
+            <input type="number" placeholder="Enter physics" name="physics" required>
+			<label>Chemistry : </label>   
+            <input type="number" placeholder="Enter chemistry" name="chemistry" required>
+			<label>Biology : </label>   
+            <input type="number" placeholder="Enter biology" name="biology" required>
+			<label>English : </label>   
+            <input type="number" placeholder="Enter english" name="english" required>
+            <button type="submit">Submit</button>  
+			
+            Forgot <a href="#"> password? </a>   
+        </div>   
+    </form>  
+<button type="submit" onclick="window.location.href='https://w3docs.com';">signup</button>	
+</body>     
+</html>
